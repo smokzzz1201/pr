@@ -1,18 +1,4 @@
- const cardButton = document.querySelector("#card-button");
-const modal = document.querySelector(".modal");
-const close = document.querySelector(".close");
-cardButton.addEventListener('click', toggleModal);
-  close.addEventListener('click', toggleModal ); 
-
-    function toggleModal(){
-        modal.classList.toggle('is-open');
-    }
-
-    new WOW().init();
-
-    //day 1
-
-    console.log(document.querySelector('.button'));
+console.log(document.querySelector('.button'));
 
 
     const buttonAuth = document.querySelector("#button-auth");
@@ -83,4 +69,5 @@ function checkAuth() {
 
 }
 checkAuth();
-    
+
+new WOW().init();
