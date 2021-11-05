@@ -257,6 +257,17 @@ line-height: 21px;
 display: none;
 }
 
+.modal-auth {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+display: none;
+
+}
+
 .is-open {
     display: flex;
 }
@@ -267,16 +278,7 @@ display: none;
 .button-out {
     display: none;
 }
-.modal-auth {
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.4);
-    display: none;
-    
-}
+
 
 .modal-body{ 
     margin-bottom: 52px;
