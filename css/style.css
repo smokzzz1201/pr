@@ -267,7 +267,9 @@ display: none;
 display: none;
 
 }
-
+.hide {
+    display: none;
+}
 .is-open {
     display: flex;
 }

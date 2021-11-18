@@ -9,6 +9,9 @@ console.log(document.querySelector('.button'));
     const userName = document.querySelector('.user-name');
     const buttonOut = document.querySelector('.button-out');
 
+
+
+
     console.log(modalAuth);
     let login = '';
 
@@ -69,5 +72,7 @@ function checkAuth() {
 
 }
 checkAuth();
+
+
 
 new WOW().init();
