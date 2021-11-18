@@ -43,7 +43,7 @@
 
 
 function authorized() {
-
+    
     function logOut() {
         
         login = null;
@@ -56,13 +56,13 @@ function authorized() {
     }
    
     console.log('авторизован');
-
+  
     userName.textContent = login;
 
     buttonAuth.style.display = 'none';
     userName.style.display ='inline';
     buttonOut.style.display= 'block';
-  
+    cardsReust.addEventListener('click', openGoods);
     buttonOut.addEventListener('click', logOut);
     
 
@@ -78,12 +78,12 @@ function notAuthorizer() {
         login = logInInput.value;
         localStorage.setItem('gloDelivery', login)
         toggleModalAuth();
-
+       
         buttonAuth.removeEventListener('click', toggleModalAuth);
         closeAuth.removeEventListener('click', toggleModalAuth);
         logInForm.removeEventListener('submit', logIn);
         logInForm.reset();
-     
+        cardsReust.removeEventListener('click', toggleModalAuth);
         checkAuth();
     }
     else { 
@@ -192,7 +192,7 @@ function openGoods(event) {
    
 }
 
-cardsReust.addEventListener('click', openGoods);
+
 cardButton.addEventListener('click', toggleModal);
   close.addEventListener('click', toggleModal ); 
 
