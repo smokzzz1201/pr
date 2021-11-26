@@ -1,5 +1,9 @@
-
+    
+ 
     new WOW().init();
+
+    import Swiper from 'https://unpkg.com/swiper@7/swiper-bundle.esm.browser.min.js'
+    
 
     //day 1
     const cardButton = document.querySelector("#card-button");
@@ -205,3 +209,11 @@ function() {
 createCardReust();
 createCardReust();
 createCardReust();
+
+new Swiper('.swiper-container', {
+    sliderPerView: 1,
+    loop: true,
+    autoplay: true,
+    effect: 'flip',
+    grabCursor: true
+})

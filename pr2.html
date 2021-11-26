@@ -6,6 +6,10 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Delivery Food - доставка еды на дом</title>
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+	<link
+	rel="stylesheet"
+	href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+  />
 	<link rel="stylesheet" href="css/normalize.css" >
 	<link rel="stylesheet" href="css/animate.min.css" >
 	<link rel="stylesheet" href="css/style.css" >
@@ -38,13 +42,33 @@
 </div>
 <main class="main">
 <div class="container">
-	<section class="container-promo">
-		<section class="rekl">
-			<h1 class="rekl-title"> Онлайн-сервис <br/> доставки еды на дом</h1>
-			<p class="rekl-text">Блюда из любимого ресторана привезет <br> курьер в перчатках, маске и с антисептиком</p>
+	<div class="swiper-container"> 
+		<section class="container-promo swiper-wrapper">
+			<section class="rekl pizza swiper-slide">
+				<h2 class="rekl-title"> Онлайн-сервис <br/> доставки еды на дом</h2>
+				<p class="rekl-text">Блюда из любимого ресторана привезет <br> курьер в перчатках, маске и с антисептиком</p>
 	
+			</section>
+			<section class="rekl kebab swiper-slide">
+						<h2 class="rekl-title">Шашлыки на майские <br> со скидкой 35%</h2>
+						<p class="rekl-text">
+							Закажите шашлыки в любом ресторане до 10 мая и получите скидку по промокоду OMAGAD
+						</p>
+					</section>
+					<section class="rekl vegetables swiper-slide">
+						<h2 class="rekl-title">Скидка 20% на всю еду <br> по промокоду LOVE.JS</h2>
+						<p class="rekl-text">
+							Блюдо из ресторана привезут вместе с двумя подарочными книгами по фронтенду
+						</p>
+					</section>
+					<section class="rekl sushi swiper-slide">
+						<h2 class="rekl-title">Сеты со скидкой до 30% <br> в ресторанах</h2>
+						<p class="rekl-text">
+							Скидки на сеты до 30 мая по промокоду DADADA
+						</p>
+					</section> 
 		</section>
-	</section>
+	</div>
 <section class="restaurants">
 <div class="section-heading">
 	<h2 class="section-title">Рестораны</h2>
@@ -183,6 +207,6 @@
 </div>
 <script src="js/disabledScroll.js"></script>
 <script src="js/wow.min.js"></script>
-<script src="js/main.js"></script>
+<script src="js/main.js" type="module"></script>
 </body>
 </html>
