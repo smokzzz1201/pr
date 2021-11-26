@@ -25,6 +25,18 @@
 
     let login = localStorage.getItem('gloDelivery');
 
+    const getData = async function(url) {
+
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Ошибка по адресу ${url},
+           статус ошибка ${response.status}!`);
+        }
+       
+       return await response.json()
+       
+       };
+
     function toggleModal(){
         modal.classList.toggle('is-open');
     }
@@ -123,22 +135,26 @@ function checkAuth() {
 
 checkAuth();
 
-function createCardReust() {
+function createCardReust(reust) {
+
+    console.log(reust);
+
+    const { image, kitchen, name, price, products, stars, time_of_delivery: timeOfDelivery } = reust;
     const card = `
-    <a class="card cards-reust">
-		<img src="img/sushi.png" alt="image" class="card-image">
+    <a class="card cards-reust" data-products="${products}">
+		<img src="${image}" alt="image" class="card-image">
 		<div class="card-text">
 			<div class="card-heading">
-				<h3 class="card-title">Точка еды</h3>
-				<span class="card-tag tag">30 минут</span>
+				<h3 class="card-title">${name}</h3>
+				<span class="card-tag tag">${timeOfDelivery}</span>
 			</div>
 				<!-- /.card-heading -->
 			<div class="card-info">
 				<div class="raiting">
 					<img src="img/star.svg" alt="star" class="star">
-					3.5</div>
-				<div class="price">От 700 ₽</div>
-				<div class="category">Суши</div>
+                    ${stars}</div>
+				<div class="price">От ${price} ₽</div>
+				<div class="category">${kitchen}</div>
 			</div>
 			<!-- /.card-info -->
 		</div>
@@ -149,15 +165,18 @@ function createCardReust() {
 
     cardsReust.insertAdjacentHTML('beforeend', card);
 }
-function createCardGood() {
+function createCardGood(gooods) {
+console.log(gooods);
+const { description, image, name, price } = gooods;
+
     const card = document.createElement('div');
     card.className = 'card';
   
     card.insertAdjacentHTML('beforeend', `
-<img src="img/piza.png" alt="image" class="card-image">
+<img src="${image}" alt="image" class="card-image">
 <div class="card-text">
   <div class="card-heading">
-    <h3 class="card-title">PizzaBurger</h3>
+    <h3 class="card-title">${name}</h3>
     <span class="card-tag tag">45 минут</span>
   </div>
     <!-- /.card-heading -->
@@ -165,7 +184,7 @@ function createCardGood() {
     <div class="raiting">
       <img src="img/star.svg" alt="star" class="star">
       4</div>
-    <div class="price">От 1000 ₽</div>
+    <div class="price">От ${price} ₽</div>
     <div class="category">Пицца</div>
   </div>
   <!-- /.card-info -->
@@ -189,31 +208,36 @@ function openGoods(event) {
         containerPromo.classList.add('hide');
         restaurants.classList.add('hide');
         menu.classList.remove('hide');
-        createCardGood();
-        createCardGood();
-        createCardGood();
+        getData(`./db/${reust.dataset.products}`).then(function(data){
+            data.forEach(createCardGood)
+          });
+        
     }
    
 }
 
-
-cardButton.addEventListener('click', toggleModal);
-  close.addEventListener('click', toggleModal ); 
-
-logo.addEventListener('click', 
-function() {
-  containerPromo.classList.remove('hide');
-    restaurants.classList.remove('hide');
-    menu.classList.add('hide');
-})
-createCardReust();
-createCardReust();
-createCardReust();
-
-new Swiper('.swiper-container', {
-    sliderPerView: 1,
-    loop: true,
-    autoplay: true,
-    effect: 'flip',
-    grabCursor: true
-})
+function init(){
+    getData('./db/partners.json').then(function(data){
+        data.forEach(createCardReust)
+      });
+    
+    cardButton.addEventListener('click', toggleModal);
+      close.addEventListener('click', toggleModal ); 
+    
+    logo.addEventListener('click', 
+    function() {
+      containerPromo.classList.remove('hide');
+        restaurants.classList.remove('hide');
+        menu.classList.add('hide');
+    })
+    
+    
+    new Swiper('.swiper-container', {
+        sliderPerView: 1,
+        loop: true,
+        autoplay: true,
+        effect: 'flip',
+        grabCursor: true
+    });
+}
+init();
