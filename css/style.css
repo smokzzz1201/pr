@@ -76,13 +76,13 @@ margin-bottom: 56px;
     background: #FFF1B8  url(../img/rekl-image.png) no-repeat top -50px right -100px;
 }
 .kebab {
-    background: #40A9FF;
+    background: #40A9FF url(../img/promo/kebab.png) no-repeat top -50px right -100px;
 }
 .vegetables {
-    background: #8C8C8C;
+    background: #8C8C8C url(../img/promo/vegetables.png) no-repeat top -50px right -100px;
 }
 .sushi {
-    background: #FFC107;
+    background: #FFC107 url(../img/promo/sushi.png) no-repeat top -50px right -100px;
 }
 .rekl-title {
     font-style: normal;
