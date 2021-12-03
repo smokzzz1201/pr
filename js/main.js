@@ -22,6 +22,9 @@
     const menu  = document.querySelector('.menu');
     const logo = document.querySelector('.logo');
     const cardsMenu = document.querySelector('.cards-menu');
+    const inputSearch = document.querySelector('.input-search');
+    const restaurantTitle = document.querySelector('.restaurant-title');
+    const cardInfo = document.querySelector('.card-info');
 
     let login = localStorage.getItem('gloDelivery');
 
@@ -162,7 +165,7 @@ function createCardReust(reust) {
 	</a>
 	<!-- /.card -->
     `;
-
+    
     cardsReust.insertAdjacentHTML('beforeend', card);
 }
 function createCardGood(gooods) {
@@ -229,6 +232,8 @@ function init(){
       containerPromo.classList.remove('hide');
         restaurants.classList.remove('hide');
         menu.classList.add('hide');
+
+       
     })
     
     
@@ -239,5 +244,49 @@ function init(){
         effect: 'flip',
         grabCursor: true
     });
+
+
+    inputSearch.addEventListener('keypress', function(event) {
+
+        if (event.charCode === 13) {
+            const value = event.target.value.trim();
+
+            if (!value) {
+                event.target.style.backgroundColor = '#d53e07';
+                event.target.value = '';
+                setTimeout(function () {
+                    event.target.style.backgroundColor = '';
+                }, 1500)
+                return;
+            }
+
+            getData('./db/partners.json').then(function (data) {
+                return data.map(function(partner) {
+                    return partner.products;
+               
+                });   
+                    
+            })
+            .then(function (linksProduct) {
+                cardsMenu.textContent = '';
+                linksProduct.forEach(function(link){
+                    getData(`./db/${link}`)
+                    .then(function (data) {
+                       const resultSearch = data.filter(function (item) {
+                           const name = item.name.toLowerCase();
+                        return name.includes(value.toLowerCase());
+                       })
+                        containerPromo.classList.add('hide');
+                        restaurants.classList.add('hide');
+                        menu.classList.remove('hide');
+                        resultSearch.forEach(createCardGood);
+                        restaurantTitle.textContent = 'Результат';
+                        cardInfo.textContent = '';
+                    })
+                })
+            })
+        }
+
+    })
 }
 init();
