@@ -264,9 +264,9 @@ cart.forEach(function({id, title, cost, count}) {
     <span class="food-name">${title}</span>
     <strong class="food-price">${cost}</strong>
     <div class="food-counter">
-        <button class="counter-button minus" data-id=${id} >-</button>
+        <button class="counter-button counter-minus" data-id=${id} >-</button>
         <span class="counter">${count}</span>
-        <button class="counter-button plus" data-id=${id} >+</button>
+        <button class="counter-button counter-plus" data-id=${id} >+</button>
     </div>
 </div>
     `;
@@ -286,13 +286,13 @@ if (target.classList.contains('counter-button')) {
     const food = cart.find(function(item) {
         return item.id === target.dataset.id;
     });
-    if (target.classList.contains('minus')) {
+    if (target.classList.contains('counter-minus')) {
         food.count--;
         if(food.count === 0) {
             cart.splice(cart.indexOf(food), 1);
         }
     };
-    if (target.classList.contains('plus'))   food.count++;
+    if (target.classList.contains('counter-plus'))   food.count++;
 
     renderCart();
 }
