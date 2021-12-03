@@ -197,7 +197,7 @@ const { description, image, name, price, id } = gooods;
     <div class="price card-price"> ${price} ₽</div>
     <div class="category">Пицца</div>
   </div>
-  <button class="button button-primary button-add-cart" id="${id}>
+  <button class="button button-primary button-add-cart" id="${id}">
 									<span class="button-card-text">В корзину</span>
 									<span class="button-cart-svg"></span>
 								</button>
@@ -239,6 +239,7 @@ function addToCart(event) {
         const title = card.querySelector('.card-title').textContent;
         const cost = card.querySelector('.card-price').textContent;
         const id = buttonAddToCart.id;
+        console.log(title, cost, id);
 
         const food = cart.find(function(item) {
             return item.id === id;
@@ -262,13 +263,13 @@ cart.forEach(function({id, title, cost, count}) {
     const itemCart = `
     <div class="food-row">
     <span class="food-name">${title}</span>
-    <strong class="food-price">${cost}</strong>
-    <div class="food-counter">
-        <button class="counter-button counter-minus" data-id=${id} >-</button>
-        <span class="counter">${count}</span>
-        <button class="counter-button counter-plus" data-id=${id} >+</button>
-    </div>
-</div>
+              <strong class="food-price">${cost}</strong>
+              <div class="food-counter">
+                  <button class="counter-button  counter-minus" data-id=${id}>-</button>
+                  <span class="counter">${count}</span>
+                  <button class="counter-button counter-plus" data-id=${id}>+</button>
+              </div>
+          </div>
     `;
 
     modalBody.insertAdjacentHTML(`afterbegin`, itemCart)
@@ -286,13 +287,14 @@ if (target.classList.contains('counter-button')) {
     const food = cart.find(function(item) {
         return item.id === target.dataset.id;
     });
+   
     if (target.classList.contains('counter-minus')) {
         food.count--;
         if(food.count === 0) {
             cart.splice(cart.indexOf(food), 1);
         }
     };
-    if (target.classList.contains('counter-plus'))   food.count++;
+    if (target.classList.contains('counter-plus'))   { food.count++; }
 
     renderCart();
 }
